@@ -3,6 +3,8 @@
 package internal
 
 import (
+	"database/sql"
+
 	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/delivery"
 	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/repository"
 	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/usecase"
@@ -14,8 +16,8 @@ type Container struct {
 	ContactDelivery   delivery.ContactDelivery
 }
 
-func NewContainer() *Container {
-	contactRepository := repository.NewContactRepository()
+func NewContainer(db *sql.DB) *Container {
+	contactRepository := repository.NewContactRepository(db)
 
 	contactUseCase := usecase.NewContactUseCase(contactRepository)
 

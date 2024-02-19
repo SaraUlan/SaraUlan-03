@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/SaraUlan/SaraUlan-03/pkg/store/postgres"
