@@ -20,7 +20,9 @@ func NewContactDelivery(useCase usecase.ContactUseCase) ContactDelivery {
 }
 
 func (cd *ContactDeliveryImpl) CreateContact(contact *domain.Contact) (*domain.Contact, error) {
-	ctx := context.WithValue(context.Background(), "ID", uuid.New().String())
+	traceID := uuid.New().String()
+	ctx := context.WithValue(context.Background(), "TraceID", traceID)
+
 	return cd.UseCase.CreateContact(ctx, contact)
 }
 
@@ -29,7 +31,7 @@ func (cd *ContactDeliveryImpl) GetContactByID(contactID int) (*domain.Contact, e
 
 	existingContact, err := cd.UseCase.GetContactByID(ctx, contactID)
 	if err != nil {
-		log.Printf("Ошибка при получении контакта по ID: %v", err)
+		log.Printf("Error: %v", err)
 		return nil, err
 	}
 
