@@ -1,5 +1,3 @@
-// services/contact/internal/domain/contact.go
-
 package domain
 
 import (

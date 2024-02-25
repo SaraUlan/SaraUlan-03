@@ -1,4 +1,3 @@
-// services/contact/internal/repository/contact_repository.go
 
 package repository
 
