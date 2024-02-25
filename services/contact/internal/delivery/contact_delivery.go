@@ -1,5 +1,3 @@
-// services/contact/internal/delivery/contact_delivery.go
-
 package delivery
 
 import "github.com/SaraUlan/SaraUlan-03/services/contact/internal/domain"
