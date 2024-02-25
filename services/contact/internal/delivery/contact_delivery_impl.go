@@ -2,6 +2,8 @@ package delivery
 
 import (
 	"context"
+	"errors"
+	"log"
 	"github.com/google/uuid"
 	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/domain"
 	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/usecase"
@@ -10,6 +12,8 @@ import (
 type ContactDeliveryImpl struct {
 	UseCase usecase.ContactUseCase
 }
+var ErrContactNotFound = errors.New("Contact not found")
+
 
 func NewContactDelivery(useCase usecase.ContactUseCase) ContactDelivery {
 	return &ContactDeliveryImpl{UseCase: useCase}
@@ -22,7 +26,18 @@ func (cd *ContactDeliveryImpl) CreateContact(contact *domain.Contact) (*domain.C
 
 func (cd *ContactDeliveryImpl) GetContactByID(contactID int) (*domain.Contact, error) {
 	ctx := context.Background()
-	return cd.UseCase.GetContactByID(ctx, contactID)
+
+	existingContact, err := cd.UseCase.GetContactByID(ctx, contactID)
+	if err != nil {
+		log.Printf("Ошибка при получении контакта по ID: %v", err)
+		return nil, err
+	}
+
+	if existingContact == nil {
+		return nil, ErrContactNotFound
+	}
+
+	return existingContact, nil
 }
 
 func (cd *ContactDeliveryImpl) UpdateContact(contact *domain.Contact) (*domain.Contact, error) {
