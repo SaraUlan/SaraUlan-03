@@ -1,18 +1,18 @@
 package usecase
 
 import (
-	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/domain"
+    "context"
+    "github.com/SaraUlan/SaraUlan-03/services/contact/internal/domain"
 )
 
 type ContactUseCase interface {
-	CreateContact(contact *domain.Contact) (*domain.Contact, error)
-	GetContactByID(contactID int) (*domain.Contact, error)
-	UpdateContact(contact *domain.Contact) (*domain.Contact, error)
-	DeleteContact(contactID int) error
+	CreateContact(ctx context.Context, contact *domain.Contact) (*domain.Contact, error)
+	GetContactByID(ctx context.Context, contactID int) (*domain.Contact, error)
+	UpdateContact(ctx context.Context, contact *domain.Contact) (*domain.Contact, error)
+	DeleteContact(ctx context.Context, contactID int) error
 
-	CreateGroup(group *domain.Group) (*domain.Group, error)
+	CreateGroup(ctx context.Context, group *domain.Group) (*domain.Group, error)
+	GetGroupByID(ctx context.Context, groupID int) (*domain.Group, error)
 
-	GetGroupByID(groupID int) (*domain.Group, error)
-
-	CreateAndAddContactToGroup(contact *domain.Contact, groupID int) (*domain.Contact, error)
+	CreateAndAddContactToGroup(ctx context.Context, contact *domain.Contact, groupID int) (*domain.Contact, error)
 }

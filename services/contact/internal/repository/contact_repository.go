@@ -1,17 +1,21 @@
 
 package repository
 
-import "github.com/SaraUlan/SaraUlan-03/services/contact/internal/domain"
-
+import (
+	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/domain"
+	"context"
+)
 type ContactRepository interface {
-	CreateContact(contact *domain.Contact) (*domain.Contact, error)
-	GetContactByID(contactID int) (*domain.Contact, error)
-	UpdateContact(contact *domain.Contact) (*domain.Contact, error)
-	DeleteContact(contactID int) error
+	CreateContact(context.Context, *domain.Contact) (*domain.Contact, error)
+	GetContactByID(context.Context, int) (*domain.Contact, error)
+	UpdateContact(context.Context, *domain.Contact) (*domain.Contact, error)
+	DeleteContact(context.Context, int) error
 
-	CreateGroup(group *domain.Group) (*domain.Group, error)
+	CreateGroup(context.Context, *domain.Group) (*domain.Group, error)
 
-	GetGroupByID(groupID int) (*domain.Group, error)
+	GetGroupByID(context.Context, int) (*domain.Group, error)
 
-	AddContactToGroup(contactID, groupID int) error
+ 	AddContactToGroup(context.Context, int, int) error
+    CreateAndAddContactToGroup(ctx context.Context, contact *domain.Contact, groupID int) (*domain.Contact, error)
+
 }

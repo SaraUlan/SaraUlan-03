@@ -1,6 +1,8 @@
 package delivery
 
 import (
+	"context"
+	"github.com/google/uuid"
 	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/domain"
 	"github.com/SaraUlan/SaraUlan-03/services/contact/internal/usecase"
 )
@@ -14,29 +16,36 @@ func NewContactDelivery(useCase usecase.ContactUseCase) ContactDelivery {
 }
 
 func (cd *ContactDeliveryImpl) CreateContact(contact *domain.Contact) (*domain.Contact, error) {
-	return cd.UseCase.CreateContact(contact)
+	ctx := context.WithValue(context.Background(), "ID", uuid.New().String())
+	return cd.UseCase.CreateContact(ctx, contact)
 }
 
 func (cd *ContactDeliveryImpl) GetContactByID(contactID int) (*domain.Contact, error) {
-	return cd.UseCase.GetContactByID(contactID)
+	ctx := context.Background()
+	return cd.UseCase.GetContactByID(ctx, contactID)
 }
 
 func (cd *ContactDeliveryImpl) UpdateContact(contact *domain.Contact) (*domain.Contact, error) {
-	return cd.UseCase.UpdateContact(contact)
+	ctx := context.Background()
+	return cd.UseCase.UpdateContact(ctx, contact)
 }
 
 func (cd *ContactDeliveryImpl) DeleteContact(contactID int) error {
-	return cd.UseCase.DeleteContact(contactID)
+	ctx := context.Background()
+	return cd.UseCase.DeleteContact(ctx, contactID)
 }
 
 func (cd *ContactDeliveryImpl) CreateGroup(group *domain.Group) (*domain.Group, error) {
-	return cd.UseCase.CreateGroup(group)
+	ctx := context.WithValue(context.Background(), "ID", uuid.New().String())
+	return cd.UseCase.CreateGroup(ctx, group)
 }
 
 func (cd *ContactDeliveryImpl) GetGroupByID(groupID int) (*domain.Group, error) {
-	return cd.UseCase.GetGroupByID(groupID)
+	ctx := context.Background()
+	return cd.UseCase.GetGroupByID(ctx, groupID)
 }
 
 func (cd *ContactDeliveryImpl) CreateAndAddContactToGroup(contact *domain.Contact, groupID int) (*domain.Contact, error) {
-	return cd.UseCase.CreateAndAddContactToGroup(contact, groupID)
+	ctx := context.Background()
+	return cd.UseCase.CreateAndAddContactToGroup(ctx, contact, groupID)
 }
