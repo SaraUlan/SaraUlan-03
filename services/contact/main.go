@@ -1,4 +1,4 @@
-// services/contact/main.go
+
 
 package main
 
@@ -45,14 +45,6 @@ func main() {
 }
 
 func initializeRouter(container *internal.Container) http.Handler {
-	// You need to implement this part using your preferred router (e.g., Gorilla Mux, Chi, etc.)
-	// Example using Gorilla Mux:
-	// router := mux.NewRouter()
-	// contactHandler := container.ContactDelivery.GetContactHandler()
-	// router.HandleFunc("/contacts", contactHandler.HandleGetContacts).Methods("GET")
-	// ...
-
-	// Return your router
-	// return router
+	
 	return nil
 }
