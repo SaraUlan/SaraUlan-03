@@ -1,5 +1,3 @@
-// services/contact/internal/usecase/contact_usecase.go
-
 package usecase
 
 import (

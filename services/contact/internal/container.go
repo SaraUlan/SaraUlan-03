@@ -1,5 +1,3 @@
-// services/contact/internal/container.go
-
 package internal
 
 import (
